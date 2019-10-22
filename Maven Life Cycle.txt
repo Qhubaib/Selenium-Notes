@@ -1,0 +1,15 @@
+Maven Commands:
+pick the directory of project 
+open cmd -> copy directory(give : and enter)
+-->mvn clean install(it will create build & give .jar files & also it will execute all Tests exist in the project)
+-->mvn test(it will execute only test in project & it wont create .jar files)
+-->mvn package -DskipTests(it will skip TCs nd check for build success)
+-->mvn package -Dmaven.test.skip=true(this will also skip TCs But for this we have give the property under properties in pom.xml file   <maven.test.skip>false</maven.test.skip>(you have to give true here) to skip the TCs ==> Later the it as false(Otherwise it will skip the TCs always)
+
+Maven Life Cycle:
+
+1. Maven Compile ==>java,classes,code-compile ==>maven compiler plugin
+
+2. Maven Test ==>Test Cases ==> maven surefire plugin(it is to execute the TCs-- if we want to execute the testng.xml file we have to use <suiteXmlFile>src/resource/testng.xml</suiteXmlFile>
+
+3. Maven Resources .jar==> jar/war/ears --> maven source plugin

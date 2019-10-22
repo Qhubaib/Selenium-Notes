@@ -1,0 +1,36 @@
+Git Commands:
+
+git init(it will create .git folder under your given path)--==>Create an empty Git repository or reinitialize an existing one
+
+git add remote origin <url of the git Repo>(add the url of git Repository)
+
+git status(it will show the -- commit folders in red color)
+
+git add .(it will add all the files exist in the project)
+
+git status(it will show all change to be commited in green color)
+
+git commit -m "write any comment regards to commit"
+
+git push origin master(if succesful it show master->master at end)
+
+if want to take the code from another git Repo or from your git Repo
+Ex:git clone https://github.com/Qhubaib/qhubaib(it will copy all the to code to cmd directory)
+
+once you have cloned need not require to take entire project once you have got any changes to cloned project you have to use pull
+git pull origin master(it will pull the latest code which is having any changes)
+
+
+check_in & check_out:
+ create a branch in git repo AND push the code in that branch
+
+git branch(this command notifies you in which branch it exist ......... Like "master" branch (or) any other branch)
+
+git pull origin otherbranch(This will pull the code from this particular branch)
+
+git branch(this again pointing to master only)
+
+git checkout otherbranch(it got pulled)
+
+git branch(this is now pointing to otherbranch)
+

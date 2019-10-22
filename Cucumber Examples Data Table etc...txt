@@ -1,0 +1,34 @@
+Cucumber without Examples keyword:
+Normal Statement is :Then User enters the username & password
+if we want to parameterized this username & Password 
+
+We have to use--> User enters the "username" and "password"
+@Then("^User enters the \"(.*)\" and \"(.*)\")
+public void User_enter_and_password(String uname,String pass)
+//This parameters we are passing in username & password field instead of hardcoding the value in the stepDefinition files
+
+Cuucumber with Examples keyword for Scenario Outline:
+we have to use--> User enter the "<username>" and "<password>"
+Examples:
+	|username|password|
+	|syed    | ahmed  | --> Refer the same as above @Then Method
+
+Cucumber with DataTable:
+Then User enters the username & password
+|syed|ahmed|
+@Then("^User enters the username and password$")
+public void User_enter_and_password(DataTable data)
+{
+	List<List<String>> list = data.raw();
+pass-->list.get(0).get(0); --> First get is pointing to Rows
+			   --> Second get is pointing to Columns
+
+
+Cucumber with Map:Data Table with maps for parameterization of TCs
+
+for(Map<String,String> data:dataTable.asMaps(String.class,String.class){
+driver.findElem(By.id(value)).sendKeys(data.get("username"));
+
+Tags Concept in Cucumber:
+
+tags = ("@SmokeTest") // For single tag execution
