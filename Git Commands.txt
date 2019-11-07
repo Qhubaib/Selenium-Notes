@@ -34,3 +34,5 @@ git checkout otherbranch(it got pulled)
 
 git branch(this is now pointing to otherbranch)
 
+To Delete the Branch
+git branch -D branchname
