@@ -1,0 +1,233 @@
+To Create a Database:
+CREATE DATABASE super_market;
+
+To Create a Table:
+CREATE TABLE employees(
+employee_id int(10) PRIMARY KEY,
+name varchar(200) NOT NULL,
+hourly_pay DECIMAL(10,2),
+position ENUM('Manager','Helper','Cashier','Cleaner'),
+contact bigint(10) PRIMARY KEY);
+
+Insert Data into Table:
+INSERT INTO employees(employee_id,name,hourly_pay,position,contact)
+VALUES(1,'Syed Qhubaib Ahmed',25.25,'Manager',8686761234);
+
+To Select Data From Table:
+SELECT * FROM employees;
+
+To select the data with limit:
+SELECT * FROM employees LIMIT 2;(it will show only 2 records)
+
+How to use where condition:
+SELECT * FROM employees WHERE employee_id=1;
+
+Modify the Data By using UPDATE:
+UPDATE employees SET hourly_pay=30 WHERE employee_id=1;
+
+How to change the table Table Structure by using ALTER:
+ALTER TABLE employees
+MODIFY employee_id INT(10) NOT NULL AUTO_INCREMENT;(No need to specify the
+employee_id now it will take automatic value by using previous value)
+Lets Understand:
+INSERT INTO employees(name,hourly_pay,position,contact)
+VALUES('Syed Qhubaib Ahmed',25.25,'Manager',8686761234);
+//Here no need to specify employee_id - it will increment automatically
+
+AND/OR Clause:
+SELECT * FROM employees WHERE position='Manager' AND hourly_pay=10;
+SELECT * FROM employees WHERE position='Manager' OR hourly_pay=10;
+
+Sort Results by using ORDER BY Clause:
+SELECT * FROM employees ORDER BY hourly_pay DESC;
+SELECT * FROM employees ORDER BY hourly_pay ASC;
+SELECT * FROM employees ORDER BY hourly_pay;(By Default it will take ASC)
+
+IN Clause Usage:
+SELECT * FROM employees WHERE employee_id=2 or employee_id=3 or employee_id=4;
+SELECT * FROM employees WHERE employee_id IN(2,3,4)
+
+Find Patterns with Data By Using LIKE Clause:
+SELECT * FROM employees WHERE name LIKE 'S%';(Starts with S Followed by any char)
+SELECT * FROM employees WHERE name LIKE '%S';(Ends with S Precede by any char)
+SELECT * FROM employees WHERE name LIKE 'S%';(Contains S Value Anywhere in between)
+
+How to Select Specific Fields:
+SELECT name,position FROM employees;
+
+DISTINCT Usage:
+SELECT DISTINCT position FROM employees;(It will give various positions exist)
+SELECT DISTINCT name FROM employees;(It will return distinct names of employees tab)
+
+ALIAS Clause:It is like giving a nick name temporarily
+For Particular Field:
+SELECT name,position AS Aukhad FROM employees;(It will return table with name & Aukhad Headers - it will change the position Name)
+For Particular Table:
+SELECT e.name,e.position FROM employees e;
+For Particular Query:
+SELECT s.* FROM (SELECT name,position FROM employees)s;
+
+MySQL Datatypes:
+TEXT: you can use any combination of chars,max char 65535.
+CHAR(x):x is maximum no.of chars it can store, can store upto 255 chars.
+VARCHAR(x):same as CHAR, older SQL version upto 255 chars,65535 for newer.
+ENUM(x,y,z,etc): if a value added while inserting is not in the values specified then a blank will be inserted instead.
+INT(X): Range is 2147482647 (if you give more than this range it will return its highest range)
+BIGINT(x): it is way bigger than this.
+FLOAT(x,y):it can hold float/Decimal values(x specifies max no.of digits, y specifies the no.of digits it can hold after decimal point)
+DECIMAL(x,y): Same as Float, But it is larger than that.
+TIMESTAMP: it is use to store YYYY-MM-DD HH:MI:SS format.
+
+MySQL Constraints:
+NOT NULL: it has to have a value not empty.
+UNIQUE: it has unique value.
+PRIMARY KEY: Combination of NOT NULL & UNIQUE.
+CHECK: CHECK(hourly_pay>5) - this will make sure that you have to give the data for hourly_pay more than 5 only - if you try to give the data <5 it wont allow you)
+DEFAULT: Specified a default value when you specify none for this column.
+
+Lets add a column more Tables Joins:
+CREATE TABLE items(
+item_id int(10) PRIMARY KEY AUTO_INCREMENT,
+name varchar(200) NOT NULL,
+weight DECIMAL(10,2) NOT NULL,
+brand varchar(200) NOT NULL,
+price DECIMAL(10,2) NOT NULL);
+
+INSERT INTO items(name,weight, brand, price)
+VALUES('choco',2,'Nestle',3);
+
+Create Table Sales:
+CREATE TABLE sales(
+sales_id int(10) PRIMARY KEY AUTO_INCREMENT,
+item_id int(10) NOT NULL,
+employee_id int(10) NOT NULL);
+
+INSERT INTO sales(employee_id,item_id)
+VALUES(14,6);
+
+FOREIGN KEY & Constraints:
+if you are referring the data in one table then it has match the values in another table.Which means in sales table you are referring the data of items table, where if you want to refer the item_id which is not exist in items table(let say it is 99) so it wont allow to add that particular query.
+
+Foreign Key is points to PRIMARY KEY of another table.
+Foreign key of table sales is point to primary key of employee_id of table employees   
+
+ALTER TABLE sales ADD FOREIGN KEY (item_id) REFERENCES items(item_id);
+ALTER TABLE sales ADD FOREIGN KEY (employee_id) REFERENCES employees(employees_id);
+
+Left Join:
+Now we want to left join items table with sales table.
+
+SELECT * FROM items LEFT JOIN sales ON items.item_id = sales.item_id;
+
+It will return all fields on the table that is on the left side of the join.
+which means it will return all rows of table items irrespective of whether corresponding row is present in sales table or not.
+
+Right Join:
+it will all rows from table to the right side of join irrespective of whether corresponding rows are present in left side of tables of join or not.
+Let say if want to right join items table with sales table.
+
+SELECT * FROM items RIGHT JOIN sales ON items.item_id = sales.item_id;
+
+INNER JOIN:
+it will only return those which has matching on both the tables.
+it will return rows from all tables that are joined but only for matching rows.
+Lets inner join sales table with items table.
+
+SELECT * FROM sales INNER JOIN items ON sales.item_id=items.item_id;
+
+UNION:
+used for joining the result of two or more SELECT Statements which basically return rows with same column name.
+lets we want to get all sales table rows where item_id sold was 1 or item_id sold was 10.
+
+SELECT sales_id,employee_id,item_id 
+FROM sales WHERE employee_id=1
+UNION
+SELECT sales_id,employee_id,item_id
+FROM sales WHERE employee_id=10;
+
+SELECT sales_id,employeeid,item_id
+FROM sales WHERE employee_id IN(1,10);
+
+SELECT * FROM sales 
+WHERE employee_id IN(1,10);
+
+SUB QUERY:
+Having a Query inside another Query
+Ex:List of All sales where item name is milk
+SELECT * FROM sales
+WHERE item_id IN(
+SELECT item_id FROM items
+WHERE name='milk');
+
+SQL Functions:
+COUNT(): It is used for counting no.of rows
+ SELECT COUNT(*) FROM items;
+
+AVG(): it is used to calculate average value of particular column
+ SELECT AVG(hourly_pay) FROM employees;
+
+SUM(): it is used for calculating the sum of all values of a particular column
+ SELECT SUM(price) FROM items;
+
+MAX(): it is used to find the maximum value of a particular column
+ SELECT MAX(hourly_pay) FROM employees;
+
+MIN(): minimum value
+ SELECT MIN(name) FROM employees;// if it is string it will check the alphabetical order - in case of digits it will check the small value.
+
+NOW(): return current date & time
+ SELECT NOW();
+
+LENGTH(): Return the Length of a particular value
+ SELECT LENGTH(name) FROM employees WHERE employee_id=5;
+ SELECT name,LENGTH(name) FROM employees;
+
+ROUND(): it is used to rounding the column to a specified no.of digits after decimal point.
+ SELECT name,ROUND(hourly_pay,1) FROM employees;
+
+GROUP BY: Used for grouping the results for a particular column
+Ex: want to see how many items of each type has been sold upto now.
+ SELECT item_id,COUNT(*) FROM sales GROUP BY item_id;(It return item_id | count(*) which means how many times item_id will got sold)
+
+HAVING: Used with group by clause and need to put a condition with group by
+want to how many times of each type has been sold & only the one which are sold more than 2 times
+SELECT employee_id,Count(*) FROM sales 
+GROUP BY employee_id HAVING COUNT(*)>2;
+
+VIEW:
+You start developing the complex query
+want to use it frequently
+best way to do is to give that query a name
+once given a name consider it as a virtual table & use it as any other table.
+Ex: Query which returns how many times each item has been sold till today.
+
+SELECT item_id,COUNT(*) AS item_count FROM sales GROUP BY item_id;
+
+Ex: Create a VIEW of above query
+CREATE VIEW item_count AS
+SELECT item_id,COUNT(*) AS item_count FROM sales GROUP BY item_id;
+
+How to use VIEW:
+SELECT * FROM item_count;
+
+ALTER VIEW: want to change the view with new query
+ALTER VIEW item_count AS
+SELECT item_id,Count(*) AS item_count FROM sales ORDER BY item_id HAVING COUNT(*)>5
+
+DROP VIEW: Dont want to use query anymore
+ DROP VIEW item_count;
+
+DELETE: delete rows from a table
+Ex: want to delete a row from employees with employee_id equal to 10;
+DELET FROM employees WHERE employee_id=10;
+Note: Dont use * while using Delete operations
+
+TRUNCATE TABLE: want to only remove the rows inside the table(Just Data)
+ TRUNCATE TABLE employees;
+
+DROP TABLE: Want to delete the table entirely(Data + table structure)
+ DROP TABLE employees;
+
+DROP DATABASE: want to delete all the database(All data+table structure+DB)
+ DROP DATABASE super_market;
+
