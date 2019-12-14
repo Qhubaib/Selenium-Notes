@@ -1,0 +1,21 @@
+Jenkins .war file need to setup in cmd to lauch the dashboard of jenkins.
+For this we need to move to the jenkins war file directory THEN
+java -jar jenkins.war --httpPort=8081(This httpPort option we have to use in case we already used the port 8080, if not simply u can use java -jar jenkins.war) then it will show the jenkins is fully up and running
+
+localhost:8081 (Launch this URL in browser)
+if you do so - you will get the authentication password enter the password--> Then it will take you into login page -> enter your credentials which your master has created for you.
+
+Jenkins Dashboard:
+Manage Jenkins --> click on Global Tool Configurations --> You will see JDK section & under that select give path of jdk file , MAVEN Section & under that configure the path of maven , Click on Apply & click on Save. 
+
+Manage Jenkins --> Configure System --> You will see "EXTENDED EMAIL NOTIFICATION" 	Give SMTP Server Address -- smtp.gmail.com, default email suffix as -- @gmail.com , check the -- check box -- Use SMTP Authentication 
+give your -- Username & Password and SMTP Port number - click apply and save
+
+Now click on new iter -- Enter the item name & select the 'free style project' -- click on OK -- in 'general' TAB -- we are having BUILD section -- in this click on 'Add Build Setup' -- click on Execute windows batch command -- give the .bat file in this section.
+
+In this section we have a section BUILD TRIGGER -- build periodically -- MINUITE(0-59) HOUR(0-23) DATEOFMONTH(1-31) MONTH(1-12) DAYOFWEEK(0-7 -- BOTH 0,7 are sundays)
+
+
+
+
+

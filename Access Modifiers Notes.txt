@@ -1,0 +1,29 @@
+Public:
+Can be accesible anywhere
+
+default:
+Can be accesible anywhere in the package. no need to specify default keyword in class/variable/method - it will pick default keyword if you simply specify (class A // int i=11; // void m1()) 
+Let say if we are having default class & in that one final int variable "i" & one public int variable "j" & one default int variable "k" & one protected int variable "m".
+
+Accessability of above variables for above "default" class: 
+Anyhow --> final int variable we cannot modify
+   # --> public int variable can be accessible anywhere (if in case this class is extends by public class in the same package & and that public class is extend by another class in the other package)
+  # --> default int variable can be accesible inside the package & cannot be accesible outside the package if you do extends like above also)
+  # --> protected int variable can be accesible inside the package & can be accesible outside the package also(if in case the class can be extends by the other in outside package & also we need to create the object for --> Child c = new Child(); only -- if in case we have create Parent p = new Child(); // Parent p = new Parent(); in these scenarios it wont be accesible
+
+Note: We cannot extends/we cannot create object of default class outside the package (if we try to do so, we will get compile time error)
+
+Protected:
+Note:we cannot create a class for protected 
+Inside public/default class we can create protected variables & methods. protected vars & methods can be accesible anywhere in the package -- including to that we can access outside the package also if in case we extends the class in outside package
+AND create the object and Reference for Both child class only
+
+Private : we cannot create a private class
+
+New point in Map & Set:
+
+Map o/p:{syed=syed, munna=munna, null=rathod} - no insertionOrder
+Set o/p:[syed, munna, null] - no insertion order
+TreeMap : Ascending order (if in case of "null" - throw NullpointerExecption)
+TreeSet : Ascending order (if in case of "null" - throw NullpointerExecption)
+T
