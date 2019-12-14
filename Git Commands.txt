@@ -30,9 +30,13 @@ git pull origin otherbranch(This will pull the code from this particular branch)
 
 git branch(this again pointing to master only)
 
-git checkout otherbranch(it got pulled)
+git branch branch_name (To create a new branch)
+
+git checkout branch_name(it got pulled)
 
 git branch(this is now pointing to otherbranch)
 
 To Delete the Branch
 git branch -D branchname
+
+git push origin branch_name(it will push the code into branch)
