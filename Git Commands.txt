@@ -30,13 +30,16 @@ git pull origin otherbranch(This will pull the code from this particular branch)
 
 git branch(this again pointing to master only)
 
-git checkout otherbranch(it got pulled)
+git branch branch_name (To create a new branch)
+
+git checkout branch_name(it got pulled)
 
 git branch(this is now pointing to otherbranch)
 
 To Delete the Branch
 git branch -D branchname
 
+<<<<<<< HEAD
 Let say one class is there - Munna is working on that class has made some changes and did push the code in git
  At the same time Qhubaib is also working in the same class - He too wants to push the same in git (But he is getting conflicts) To resolve these type of conflicts we need to follow below commands.
 
@@ -58,3 +61,6 @@ Now Do -- git push origin master
 
 
 
+=======
+git push origin branch_name(it will push the code into branch)
+>>>>>>> 47e71cbb63201c9d8a180d870907c6cc435c0e02
