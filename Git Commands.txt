@@ -36,3 +36,25 @@ git branch(this is now pointing to otherbranch)
 
 To Delete the Branch
 git branch -D branchname
+
+Let say one class is there - Munna is working on that class has made some changes and did push the code in git
+ At the same time Qhubaib is also working in the same class - He too wants to push the same in git (But he is getting conflicts) To resolve these type of conflicts we need to follow below commands.
+
+To resolve the conflicts 
+git pull --rebase origin master
+what exactly rebase does is it will always have the initial commits that will come from central repository it will just add up my commits on top of that workflow (or) my working tree that shows all my commits
+it will shows the conflict of the content(which files exactly having the conflicts)
+
+To resolve the conflicts we need to use
+git mergetool
+it will show the conflicts in git itself (resolve the conflicts by merging it)
+For saving use (:wq in command line)
+
+To push the code 
+git rebase --continue
+it will apply the changes to central repository with continuaion previous commit
+
+Now Do -- git push origin master
+
+
+
