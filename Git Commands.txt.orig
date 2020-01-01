@@ -1,0 +1,66 @@
+Git Commands:
+
+git init(it will create .git folder under your given path)--==>Create an empty Git repository or reinitialize an existing one
+
+git add remote origin <url of the git Repo>(add the url of git Repository)
+
+git status(it will show the -- commit folders in red color)
+
+git add .(it will add all the files exist in the project)
+
+git status(it will show all change to be commited in green color)
+
+git commit -m "write any comment regards to commit"
+
+git push origin master(if succesful it show master->master at end)
+
+if want to take the code from another git Repo or from your git Repo
+Ex:git clone https://github.com/Qhubaib/qhubaib(it will copy all the to code to cmd directory)
+
+once you have cloned need not require to take entire project once you have got any changes to cloned project you have to use pull
+git pull origin master(it will pull the latest code which is having any changes)
+
+
+check_in & check_out:
+ create a branch in git repo AND push the code in that branch
+
+git branch(this command notifies you in which branch it exist ......... Like "master" branch (or) any other branch)
+
+git pull origin otherbranch(This will pull the code from this particular branch)
+
+git branch(this again pointing to master only)
+
+git branch branch_name (To create a new branch)
+
+git checkout branch_name(it got pulled)
+
+git branch(this is now pointing to otherbranch)
+
+To Delete the Branch
+git branch -D branchname
+
+<<<<<<< HEAD
+Let say one class is there - Munna is working on that class has made some changes and did push the code in git
+ At the same time Qhubaib is also working in the same class - He too wants to push the same in git (But he is getting conflicts) To resolve these type of conflicts we need to follow below commands.
+
+To resolve the conflicts 
+git pull --rebase origin master
+what exactly rebase does is it will always have the initial commits that will come from central repository it will just add up my commits on top of that workflow (or) my working tree that shows all my commits
+it will shows the conflict of the content(which files exactly having the conflicts)
+
+To resolve the conflicts we need to use
+git mergetool
+it will show the conflicts in git itself (resolve the conflicts by merging it)
+For saving use (:wq in command line)
+
+To push the code 
+git rebase --continue
+it will apply the changes to central repository with continuaion previous commit
+
+Now Do -- git push origin master
+
+
+
+=======
+git push origin branch_name(it will push the code into branch)
+>>>>>>> 47e71cbb63201c9d8a180d870907c6cc435c0e02
