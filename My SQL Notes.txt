@@ -238,3 +238,9 @@ so what i need to do here is i will make copy of the table and i will compare wi
 Like 10>10, 11>10, 12>10, 13>10, 14>10 it will give the count of true condition .. here in this case it will count as 4
 if we get the count as 2, then we will get the 3rd highest salary.
 select * from employees e1 where N-1=(select count(distinct hourly_pay) from employees e2 where e2.hourly_pay>e1.hourly_pay);
+
+//Select 2nd Highest salary, let say salaries 11,12,13,14,15
+select max(hourly_pay) from employees where hourly_pay not in(select max(hourly_pay) from employees);
+what nested query will do is it will give the highest salary 15.
+outer query will check the condition -- which excludes the salary 15--> now it is having only 11,12,13,14
+out of which it will check the highest salary.
