@@ -231,3 +231,10 @@ DROP TABLE: Want to delete the table entirely(Data + table structure)
 DROP DATABASE: want to delete all the database(All data+table structure+DB)
  DROP DATABASE super_market;
 
+//Select the Nth Highest salary from a table
+here the logic is -> in inner query we are comparing the salaries with two tables by giving the alias names
+let say we are having 5 salaries 10,11,12,13,14 etc.. i want to get the 3rd highest salary.
+so what i need to do here is i will make copy of the table and i will compare with 10 to 10,11,12,13,14 
+Like 10>10, 11>10, 12>10, 13>10, 14>10 it will give the count of true condition .. here in this case it will count as 4
+if we get the count as 2, then we will get the 3rd highest salary.
+select * from employees e1 where N-1=(select count(distinct hourly_pay) from employees e2 where e2.hourly_pay>e1.hourly_pay);
