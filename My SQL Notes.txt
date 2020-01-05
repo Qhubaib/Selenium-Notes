@@ -244,3 +244,6 @@ select max(hourly_pay) from employees where hourly_pay not in(select max(hourly_
 what nested query will do is it will give the highest salary 15.
 outer query will check the condition -- which excludes the salary 15--> now it is having only 11,12,13,14
 out of which it will check the highest salary.
+
+//Find all employee details who work for a department
+select * from employees where exists(select * from dept where depr.id=employees.id);
