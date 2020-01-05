@@ -245,5 +245,15 @@ what nested query will do is it will give the highest salary 15.
 outer query will check the condition -- which excludes the salary 15--> now it is having only 11,12,13,14
 out of which it will check the highest salary.
 
-//Find all employee details who work for a department
+//Find all employee details who work for a department  -- corelated query
 select * from employees where exists(select * from dept where depr.id=employees.id);
+//Nested Query
+select * from employees where employee_id in(select employee_id from dept);
+//Joins
+select * from employees,dept where employees.employee_id=dept.employee_id;
+
+//To take the details of middle employee
+select count(*)/2 from employees; // it will give just count -- which is divided by 2 (if count is 19 it will give 9.5)
+select * from employees where employee_id in(select (count(*)/2)+0.5 from employees);
+it will select the employee_id of count return value -- means let say we have 17 queries we want the details of employee_id 
+of middled position then it will return exact middle value.
